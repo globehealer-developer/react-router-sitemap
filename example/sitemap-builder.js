@@ -6,28 +6,23 @@ const Sitemap = require('../').default;
 const filterConfig = {
 	isValid: false,
 	rules: [
-		/\/auth/,
-		/\*/,
+			/\*/,
 	],
 };
 
 const paramsConfig = {
-	'/projects/:projectName': [
-		{ projectName: 'hello-world' },
-		{ projectName: 'second-project' },
-		{ projectName: ['third-project', 'fourth-project'] },
+	'/user/:guid': [
+		{ projectName: 'some-random-token' }
 	],
-	'/projects/:projectName/view': [
-		{ projectName: 'hello-world' },
-		{ projectName: 'second-project' },
-		{ projectName: ['third-project', 'fourth-project'] },
-	],
+	'/patient/:guid/cases': [
+		{ projectName: 'some-random-token' }
+	]
 };
 
 (
 	new Sitemap(router)
 		.filterPaths(filterConfig)
 		.applyParams(paramsConfig)
-		.build('http://my-site.ru')
+		.build('https://portal.globehealer.com')
 		.save('./sitemap.xml')
 );
